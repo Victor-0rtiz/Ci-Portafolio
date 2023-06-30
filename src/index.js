@@ -6,18 +6,20 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import { DbProvider } from "./content/dbContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        
-        <Route path="/" element={<App/>}>
-          <Route index element={<Home/>}></Route>
-          <Route element={<Login/>} path="/login"></Route>
-        </Route>
-      </Routes>
+      <DbProvider>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />}></Route>
+            <Route element={<Login />} path="/login"></Route>
+          </Route>
+        </Routes>
+      </DbProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

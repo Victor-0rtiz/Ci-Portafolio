@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { DbProvider } from "./content/dbContext";
+import ProtectedRoute from "./components/ProtectedRoutes.js";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +17,13 @@ root.render(
       <DbProvider>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Home />}></Route>
+            <Route  index
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            ></Route>
             <Route element={<Login />} path="/login"></Route>
           </Route>
         </Routes>

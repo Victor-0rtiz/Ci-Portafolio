@@ -4,29 +4,40 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+
   const { loginFunction } = useDB();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
+
   const handleChange = ({ target: { name, value } }) => {
     setUser({
       ...user,
       [name]: value,
     });
   };
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
     try {
       await loginFunction(user.email, user.password);
+      
       Swal.fire({
         icon: "success",
         title: "Exito",
         text: "Bienvenido",
       });
+
       navigate("/");
+
+
     } catch (error) {
       console.error(error);
       Swal.fire({
